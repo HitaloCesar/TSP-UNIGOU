@@ -64,7 +64,7 @@
   </object>
   <object class="GtkWindow" id="window1">
     <property name="can_focus">False</property>
-    <property name="title" translatable="yes">Cavalo Xadrez</property>
+    <property name="title" translatable="yes">TSP</property>
     <property name="icon_name">view-refresh</property>
     <child>
       <object class="GtkBox" id="box1">
