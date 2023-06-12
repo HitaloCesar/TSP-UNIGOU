@@ -2,7 +2,6 @@
 
 from math import pi
 from operator import itemgetter
-from geneticAlg import GeneticAlgorithm
 
 from pso import PSO
 

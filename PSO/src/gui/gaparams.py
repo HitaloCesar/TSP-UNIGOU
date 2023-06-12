@@ -1,5 +1,4 @@
 from time import sleep
-from geneticAlg import GeneticAlgorithm
 
 from pso import PSO
 

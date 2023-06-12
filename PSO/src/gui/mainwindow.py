@@ -3,7 +3,6 @@ from os.path import join
 
 from sys import exit
 
-from geneticAlg import GeneticAlgorithm
 from pso import PSO
 from tsp import TSP 
 
