@@ -1,5 +1,6 @@
 import random
 import math
+from myFileWriter import MyFileWriter
 
 class City:
     def __init__(self, x, y):
@@ -29,8 +30,13 @@ class Particle:
     def path_cost(self):
         return sum([city.distance(self.route[index - 1]) for index, city in enumerate(self.route)])
 
-class PSO:
+    def getStringRoute(self):
+        listOfCities = []
+        for city in self.route:
+            listOfCities.append(city.toCoord())
+        return(str(listOfCities))
 
+class PSO:
     def __init__(self, iterations, population_size, gbest_probability=1.0, pbest_probability=1.0, cities=None, greedyParticle=False):
         psoCities = []
         for city in cities:
@@ -48,6 +54,11 @@ class PSO:
 
         solutions = self.initial_population()
         self.particles = [Particle(route=solution) for solution in solutions]
+    
+        self.log_file = MyFileWriter('Logs.txt')
+        self.log_file.clear_file()
+
+        self.log_file.write_to_file(f'iterations= {iterations}\npopulation_size= {population_size}\nglobal_prob= {gbest_probability}\nparticle_prob= {pbest_probability}\ngreedy_particle={greedyParticle}')
 
     def generate_random_route(self):
         cities1 = [self.cities[0]]
@@ -74,13 +85,15 @@ class PSO:
             random_population.append(self.generate_random_route())
             return random_population
 
-
     def iterate(self, t):
         self.current_iteration += 1
         self.gbest = min(self.particles, key=lambda p: p.pbest_cost)
         self.gcost_iter.append(self.gbest.pbest_cost)
 
-        for particle in self.particles:
+        self.log_file.write_to_file(f'Iteration = {t}, previous best cost = {self.gbest.pbest_cost}')
+        for idx, particle in enumerate(self.particles):
+            self.log_file.write_to_file(f'Particle {idx}: ' + str(particle.getStringRoute() + f', particle current cost = {particle.current_cost}'))
+
             temp_velocity = []
             gbest = self.gbest.pbest[:]
             new_route = particle.route[:]
@@ -102,6 +115,9 @@ class PSO:
                     new_route[information_swap[0]], new_route[information_swap[1]] = new_route[information_swap[1]], new_route[information_swap[0]]
 
             particle.update_particle_status(new_route)
+
+            if (t >= self.iterations - 1):
+                self.log_file.write_to_file(f'Last Iteration Particle {idx}: ' + str(particle.getStringRoute()))
 
 
     def getNStrongestParticles(self, count=1):

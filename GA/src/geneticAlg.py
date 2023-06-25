@@ -20,6 +20,8 @@ class GeneticAlgorithm(object):
         self.crossoverFn = self.edgeCrossover
         self.mutateFn = self.swapMutate
         self.problem = problem
+
+        self.bestIndividualCostIter = []
         
     #==========================================================================
     #---=== Base functions ===
@@ -50,6 +52,8 @@ class GeneticAlgorithm(object):
         self.currGeneration += 1
         self.population = self.newPopulation
         self.evaluatePopFitness()
+
+        self.bestIndividualCostIter.append(1/self.bestIndividualTuple()[1])
     
     #==========================================================================
     #---=== Genetic Algorithm ===

@@ -9,6 +9,8 @@ from tsp import TSP
 from gui.gaparams import GAParams
 from gui.solviewer import SolutionViewer
 
+import matplotlib.pyplot as plt
+
 DATA_PATH = join('..', 'data')
 
 class MainWindow:
@@ -57,6 +59,13 @@ class MainWindow:
             #Updating GUI
             while Gtk.events_pending():
                 Gtk.main_iteration()
+
+        plt.figure(0)
+        plt.plot(self.ga.bestIndividualCostIter, 'g')
+        plt.ylabel('Distance')
+        plt.xlabel('Generation')
+        plt.draw()
+        plt.show()
     
     def run(self):
         """Run the main user interface"""

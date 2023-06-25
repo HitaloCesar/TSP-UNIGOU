@@ -80,7 +80,6 @@ class MainWindow:
         plt.draw()
         plt.show()
 
-    
     def run(self):
         """Run the main user interface"""
         Gtk.main()
