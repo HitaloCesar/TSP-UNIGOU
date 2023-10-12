@@ -46,25 +46,20 @@ class MainWindow:
     def execute(self, widget):
         """Execute Genetic Algorithm until last generation"""
         #GUI Helpers
-        iterations = self.gaparams.getNumberOfIterations()
+        iteractions = self.gaparams.getNumberOfIteractions()
         popSize = self.gaparams.getPopulationSize()
         pbest = self.gaparams.getPBestProbability()
         gbest = self.gaparams.getGBestProbability()
         cities = self.problem.getCities(self.solviewer.getNumberOfCities())
         greedyParticle = self.gaparams.getGreedyParticleEnabled()
-        self.pso = PSO(iterations=iterations, population_size=popSize, pbest_probability=pbest, gbest_probability=gbest, cities=cities, greedyParticle=greedyParticle)
+        self.pso = PSO(iteractions=iteractions, population_size=popSize, pbest_probability=pbest, gbest_probability=gbest, cities=cities, greedyParticle=greedyParticle)
         self.gaparams.setPSO(self.pso)
         self.solviewer.setPSO(self.pso)
         self.solviewer.clear()
-        #self.gaparams.writeStatus()
-        #Initial population      
-        #self.ga.randomPopulation()
-        #self.ga.evaluatePopFitness()
-        #Displaying initial population
         self.gaparams.handleEvolution()
         self.solviewer.handleEvolution()
         #Evolutions
-        for t in range(0, iterations):
+        for t in range(0, iteractions):
             #Evolving population
             self.pso.iterate(t)
             self.gaparams.handleEvolution()
@@ -73,10 +68,12 @@ class MainWindow:
             while Gtk.events_pending():
                 Gtk.main_iteration()
         
+        # Plot convergence graph in the end
         plt.figure(0)
         plt.plot(self.pso.gcost_iter, 'g')
+        plt.title('Convergence Graph')
         plt.ylabel('Distance')
-        plt.xlabel('Generation')
+        plt.xlabel('Iteraction')
         plt.draw()
         plt.show()
 

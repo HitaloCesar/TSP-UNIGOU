@@ -4,7 +4,7 @@
   <object class="GtkAdjustment" id="adjustmentCidades">
     <property name="lower">5</property>
     <property name="upper">10000</property>
-    <property name="value">100</property>
+    <property name="value">25</property>
     <property name="step_increment">1</property>
     <property name="page_increment">10</property>
   </object>
@@ -16,7 +16,7 @@
   </object>
   <object class="GtkAdjustment" id="adjustmentMaxGenerations">
     <property name="upper">10000</property>
-    <property name="value">300</property>
+    <property name="value">200</property>
     <property name="step_increment">1</property>
     <property name="page_increment">10</property>
   </object>
@@ -64,7 +64,7 @@
   </object>
   <object class="GtkWindow" id="window1">
     <property name="can_focus">False</property>
-    <property name="title" translatable="yes">TSP</property>
+    <property name="title" translatable="yes">TSP Genetic Algorithm(GA)</property>
     <property name="icon_name">view-refresh</property>
     <child>
       <object class="GtkBox" id="box1">
@@ -116,7 +116,7 @@
                             <property name="invisible_char">•</property>
                             <property name="width_chars">3</property>
                             <property name="invisible_char_set">True</property>
-                            <property name="primary_icon_pixbuf">ppls.png</property>
+                            <property name="primary_icon_pixbuf">population.png</property>
                             <property name="adjustment">adjustmentTamPopulacao</property>
                             <property name="numeric">True</property>
                           </object>
@@ -175,7 +175,7 @@
                             <property name="can_focus">True</property>
                             <property name="invisible_char">•</property>
                             <property name="invisible_char_set">True</property>
-                            <property name="primary_icon_name">media-playlist-shuffle</property>
+                            <property name="primary_icon_pixbuf">recombination.jpg</property>
                             <property name="adjustment">adjustmentTaxaRecombinacao</property>
                             <property name="digits">2</property>
                             <property name="numeric">True</property>
@@ -194,7 +194,7 @@
                             <property name="invisible_char">•</property>
                             <property name="width_chars">6</property>
                             <property name="invisible_char_set">True</property>
-                            <property name="primary_icon_name">applications-science</property>
+                            <property name="primary_icon_pixbuf">mutation.png</property>
                             <property name="adjustment">adjustmentTaxaMutacao</property>
                             <property name="digits">4</property>
                             <property name="numeric">True</property>
@@ -243,7 +243,7 @@
                             <property name="can_focus">True</property>
                             <property name="invisible_char">●</property>
                             <property name="invisible_char_set">True</property>
-                            <property name="primary_icon_name">dialog-information</property>
+                            <property name="primary_icon_pixbuf">elite.png</property>
                             <property name="adjustment">adjustmentElite</property>
                             <property name="numeric">True</property>
                           </object>
@@ -430,7 +430,7 @@
                                     <property name="can_focus">False</property>
                                     <property name="label" translatable="yes">Cidades</property>
                                     <property name="use_underline">True</property>
-                                    <property name="stock_id">gtk-home</property>
+                                    <property name="icon_name">media-playlist-shuffle</property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -443,7 +443,7 @@
                                     <property name="can_focus">False</property>
                                     <property name="label" translatable="yes">Circular</property>
                                     <property name="use_underline">True</property>
-                                    <property name="icon_name">drive-optical</property>
+                                    <property name="icon_name">media-record</property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>

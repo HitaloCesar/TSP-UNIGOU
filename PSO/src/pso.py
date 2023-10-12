@@ -20,6 +20,9 @@ class Particle:
         self.current_cost = cost if cost else self.path_cost()
         self.pbest_cost = cost if cost else self.path_cost()
 
+    def __str__(self) -> str:
+        return str(self.pbest_cost)
+
     def update_particle_status(self, route):
         self.route = route
         self.current_cost = self.path_cost()
@@ -37,14 +40,14 @@ class Particle:
         return(str(listOfCities))
 
 class PSO:
-    def __init__(self, iterations, population_size, gbest_probability=1.0, pbest_probability=1.0, cities=None, greedyParticle=False):
+    def __init__(self, iteractions, population_size, gbest_probability=1.0, pbest_probability=1.0, cities=None, greedyParticle=False):
         psoCities = []
         for city in cities:
             psoCities.append(City(city[0], city[1]))
         self.cities = psoCities
         self.gbest = None
         self.gcost_iter = []
-        self.iterations = iterations
+        self.iteractions = iteractions
         self.population_size = population_size
         self.particles = []
         self.gbest_probability = gbest_probability
@@ -55,10 +58,9 @@ class PSO:
         solutions = self.initial_population()
         self.particles = [Particle(route=solution) for solution in solutions]
     
-        self.log_file = MyFileWriter('Logs.txt')
+        self.log_file = MyFileWriter('LogsPSO.txt')
         self.log_file.clear_file()
-
-        self.log_file.write_to_file(f'iterations= {iterations}\npopulation_size= {population_size}\nglobal_prob= {gbest_probability}\nparticle_prob= {pbest_probability}\ngreedy_particle={greedyParticle}')
+        self.log_file.write_to_file(f'iteractions= {iteractions}\npopulation_size= {population_size}\nglobal_prob= {gbest_probability}\nparticle_prob= {pbest_probability}\ngreedy_particle={greedyParticle}')
 
     def generate_random_route(self):
         cities1 = [self.cities[0]]
@@ -116,7 +118,7 @@ class PSO:
 
             particle.update_particle_status(new_route)
 
-            if (t >= self.iterations - 1):
+            if (t >= self.iteractions - 1):
                 self.log_file.write_to_file(f'Last Iteration Particle {idx}: ' + str(particle.getStringRoute()))
 
 

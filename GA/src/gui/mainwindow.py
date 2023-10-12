@@ -62,6 +62,7 @@ class MainWindow:
 
         plt.figure(0)
         plt.plot(self.ga.bestIndividualCostIter, 'g')
+        plt.title('Convergence Graph')
         plt.ylabel('Distance')
         plt.xlabel('Generation')
         plt.draw()

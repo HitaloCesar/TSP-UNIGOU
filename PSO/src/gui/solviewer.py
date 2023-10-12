@@ -6,11 +6,11 @@ from operator import itemgetter
 from pso import PSO
 
 SHOW_LAST = 5
-MSG_1ST = "<b>Best Individual</b>"
-MSG_OTHERS = "<b>%d° best Individual</b>"
+MSG_1ST = "<b>Best Particle</b>"
+MSG_OTHERS = "<b>%d° best particle</b>"
 
 class SolutionViewer:
-    """View best solutions from the genetic algorithm
+    """View best solutions from the PSO
     
         bestTuples: list of tuples
             [(individual, fitness, generation) , ... ]
@@ -34,7 +34,6 @@ class SolutionViewer:
         self.btnCircularCities = self.builder.get_object("btnCircularCities")
         self.btnPaned = self.builder.get_object("btnPaned")
         self.lblRank = self.builder.get_object("lblRank")
-        self.lblGeneration = self.builder.get_object("lblDisplayedGeneration")
         self.spinCities = self.builder.get_object("spinCidades") 
         self.adjCities = self.builder.get_object("adjustmentCidades")
         
@@ -48,14 +47,13 @@ class SolutionViewer:
         self.changeCityCount()
         
     def setPSO(self, pso):
-        """Set the GeneticAlgorithm instance to work with"""
+        """Set the PSO instance to work with"""
         assert isinstance(pso, PSO)
         self.pso = pso
         
     def clear(self):
         #Updating title labels
         self.lblRank.set_markup(MSG_1ST)
-        self.lblGeneration.set_markup(" ")
         self.bestTuples.clear()
         
     def togglePaned(self, widget):
@@ -151,10 +149,9 @@ class SolutionViewer:
             self.lblRank.set_markup(MSG_1ST)
         else:
             self.lblRank.set_markup(MSG_OTHERS % (self.shownIndiv + 1))
-        self.lblGeneration.set_markup("<b>%d</b>" % generation)
         
         self.cities.queue_draw()
-      
+
     #==========================================================================
     #---=== Pager-related ===
     #==========================================================================

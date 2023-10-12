@@ -8,17 +8,10 @@
     <property name="step_increment">1</property>
     <property name="page_increment">10</property>
   </object>
-  <object class="GtkAdjustment" id="adjustmentMaxGenerations">
+  <object class="GtkAdjustment" id="adjustmentMaxIterations">
     <property name="upper">50000</property>
-    <property name="value">400</property>
+    <property name="value">50</property>
     <property name="step_increment">1</property>
-    <property name="page_increment">10</property>
-  </object>
-  <object class="GtkAdjustment" id="adjustmentNumBits">
-    <property name="lower">8</property>
-    <property name="upper">62</property>
-    <property name="value">20</property>
-    <property name="step_increment">2</property>
     <property name="page_increment">10</property>
   </object>
   <object class="GtkAdjustment" id="adjustmentPausa">
@@ -28,28 +21,22 @@
   </object>
   <object class="GtkAdjustment" id="adjustmentTamPopulacao">
     <property name="lower">5</property>
-    <property name="upper">10000</property>
-    <property name="value">1200</property>
+    <property name="upper">20000</property>
+    <property name="value">300</property>
     <property name="step_increment">1</property>
     <property name="page_increment">10</property>
   </object>
-  <object class="GtkAdjustment" id="adjustmentTaxaMutacao">
+  <object class="GtkAdjustment" id="adjustmentTaxaGBest">
     <property name="upper">2</property>
     <property name="value">0.20</property>
     <property name="step_increment">0.01</property>
     <property name="page_increment">0.05</property>
   </object>
-  <object class="GtkAdjustment" id="adjustmentTaxaRecombinacao">
+  <object class="GtkAdjustment" id="adjustmentTaxaPBest">
     <property name="upper">2</property>
     <property name="value">0.35</property>
     <property name="step_increment">0.05</property>
     <property name="page_increment">0.2</property>
-  </object>
-  <object class="GtkAdjustment" id="adjustmentTorneio">
-    <property name="upper">50</property>
-    <property name="value">3</property>
-    <property name="step_increment">1</property>
-    <property name="page_increment">10</property>
   </object>
   <object class="GtkImage" id="image1">
     <property name="visible">True</property>
@@ -58,7 +45,7 @@
   </object>
   <object class="GtkWindow" id="window1">
     <property name="can_focus">False</property>
-    <property name="title" translatable="yes">TSP</property>
+    <property name="title" translatable="yes">TSP Particle Swarm Optimization(PSO)</property>
     <property name="icon_name">view-refresh</property>
     <child>
       <object class="GtkBox" id="box1">
@@ -104,13 +91,13 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkSpinButton" id="spinTamPopulacao">
+                          <object class="GtkSpinButton" id="spinNumParticles">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="invisible_char">•</property>
                             <property name="width_chars">3</property>
                             <property name="invisible_char_set">True</property>
-                            <property name="primary_icon_pixbuf">ppls.png</property>
+                            <property name="primary_icon_pixbuf">atom.png</property>
                             <property name="adjustment">adjustmentTamPopulacao</property>
                             <property name="numeric">True</property>
                           </object>
@@ -164,13 +151,13 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkSpinButton" id="spinTaxaRecombinacao">
+                          <object class="GtkSpinButton" id="spinGBestMaxP">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="invisible_char">•</property>
                             <property name="invisible_char_set">True</property>
-                            <property name="primary_icon_name">media-playlist-shuffle</property>
-                            <property name="adjustment">adjustmentTaxaRecombinacao</property>
+                            <property name="primary_icon_pixbuf">self.png</property>
+                            <property name="adjustment">adjustmentTaxaPBest</property>
                             <property name="digits">2</property>
                             <property name="numeric">True</property>
                           </object>
@@ -182,14 +169,14 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkSpinButton" id="spinTaxaMutacao">
+                          <object class="GtkSpinButton" id="spinPBestMaxP">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="invisible_char">•</property>
                             <property name="width_chars">6</property>
                             <property name="invisible_char_set">True</property>
-                            <property name="primary_icon_name">applications-science</property>
-                            <property name="adjustment">adjustmentTaxaMutacao</property>
+                            <property name="primary_icon_pixbuf">earth.png</property>
+                            <property name="adjustment">adjustmentTaxaGBest</property>
                             <property name="digits">4</property>
                             <property name="numeric">True</property>
                           </object>
@@ -201,14 +188,14 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkSpinButton" id="spinMaxGenerations">
+                          <object class="GtkSpinButton" id="spinNumberOfIteractions">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="invisible_char">•</property>
                             <property name="width_chars">8</property>
                             <property name="invisible_char_set">True</property>
-                            <property name="primary_icon_name">x-office-calendar</property>
-                            <property name="adjustment">adjustmentMaxGenerations</property>
+                            <property name="primary_icon_pixbuf">clock.png</property>
+                            <property name="adjustment">adjustmentMaxIterations</property>
                           </object>
                           <packing>
                             <property name="left_attach">1</property>
@@ -372,7 +359,7 @@
                                     <property name="can_focus">False</property>
                                     <property name="label" translatable="yes">Cidades</property>
                                     <property name="use_underline">True</property>
-                                    <property name="stock_id">gtk-home</property>
+                                    <property name="icon_name">media-playlist-shuffle</property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -385,7 +372,7 @@
                                     <property name="can_focus">False</property>
                                     <property name="label" translatable="yes">Circular</property>
                                     <property name="use_underline">True</property>
-                                    <property name="icon_name">drive-optical</property>
+                                    <property name="icon_name">media-record</property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -448,47 +435,13 @@
                       <object class="GtkLabel" id="lblRank">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">&lt;b&gt;Best Individual&lt;/b&gt;</property>
+                        <property name="label" translatable="yes">&lt;b&gt;Best Particle&lt;/b&gt;</property>
                         <property name="use_markup">True</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
                         <property name="position">0</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkBox" id="box5">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <child>
-                          <object class="GtkLabel" id="label24">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="label" translatable="yes">Generation:</property>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkLabel" id="lblDisplayedGeneration">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">True</property>
-                            <property name="position">1</property>
-                          </packing>
-                        </child>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">1</property>
                       </packing>
                     </child>
                   </object>
