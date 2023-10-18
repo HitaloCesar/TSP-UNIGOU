@@ -58,7 +58,7 @@ class PSO:
         solutions = self.initial_population()
         self.particles = [Particle(route=solution) for solution in solutions]
     
-        self.log_file = MyFileWriter('LogsPSO.txt')
+        self.log_file = MyFileWriter('../data/logs/LogsPSO.txt')
         self.log_file.clear_file()
         self.log_file.write_to_file(f'iteractions= {iteractions}\npopulation_size= {population_size}\nglobal_prob= {gbest_probability}\nparticle_prob= {pbest_probability}\ngreedy_particle={greedyParticle}')
 
