@@ -1,5 +1,5 @@
 from random import SystemRandom
-from math import sqrt, pi, sin, cos
+from math import pi, sin, cos
 
 class TSP:
     def __init__(self):

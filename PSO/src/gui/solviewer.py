@@ -47,7 +47,6 @@ class SolutionViewer:
         self.changeCityCount()
         
     def setPSO(self, pso):
-        """Set the PSO instance to work with"""
         assert isinstance(pso, PSO)
         self.pso = pso
         
@@ -68,29 +67,21 @@ class SolutionViewer:
         return self.spinCities.get_value_as_int()
 
     def changeCityCount(self, *widget):
-        """Change number of cities"""
         self.problem.setCityCount( self.spinCities.get_value_as_int() )
         self.clear()
         self.cities.queue_draw()
             
     def randomCities(self, *widget):
-        """Generate random cities coordinates"""
         self.problem.randomCities()
         self.clear()
         self.cities.queue_draw()
         
     def circularCities(self, *widget):
-        """Generate circular map"""
         self.problem.circularCities()
         self.clear()
         self.cities.queue_draw()
 
-    #==========================================================================
-    #---=== Best Individuals Retrieval ===
-    #==========================================================================
-
-    def handleEvolution(self):
-        """Handle a population evolution event"""
+    def update(self):
         assert isinstance(self.pso, PSO)
         
         #Adding SHOW_LAST entries to the list
@@ -112,10 +103,6 @@ class SolutionViewer:
         self.bestTuples = self.bestTuples[:SHOW_LAST]
         self.showSolution()
         self.updateSensivity()
-        
-    #==========================================================================
-    #---=== Cities display ===
-    #==========================================================================
 
     def drawCities(self, widget, ctx):
         self.width = widget.get_allocated_width()
@@ -152,12 +139,7 @@ class SolutionViewer:
         
         self.cities.queue_draw()
 
-    #==========================================================================
-    #---=== Pager-related ===
-    #==========================================================================
-
     def updateSensivity(self):
-        """Updates pager buttons sensivity"""
         if self.shownIndiv >= len(self.bestTuples) - 1:
             self.btnNext.set_sensitive(False)
         else:
@@ -168,13 +150,11 @@ class SolutionViewer:
             self.btnPrevious.set_sensitive(True)
     
     def previousSolution(self, *widget):
-        """Switches to previous solution"""
         self.shownIndiv -= 1
         self.showSolution()
         self.updateSensivity()
     
     def nextSolution(self, *widget):
-        """Switches to next solution"""
         self.shownIndiv += 1
         self.showSolution()
         self.updateSensivity()
